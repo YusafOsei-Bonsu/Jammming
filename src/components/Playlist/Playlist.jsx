@@ -9,7 +9,7 @@ export class Playlist extends React.Component {
             <div className="Playlist">
                 <input value="New Playlist"/>
                 <TrackList />
-                 <button className="Playlist-save">SAVE TO SPOTIFY</button>
+                <button className="Playlist-save">SAVE TO SPOTIFY</button>
             </div>
         );
     }
