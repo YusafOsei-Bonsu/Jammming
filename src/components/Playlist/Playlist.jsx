@@ -1,9 +1,8 @@
 import React from 'react';
-import { TrackList } from "../TrackList/TrackList.jsx";
+import TrackList from "../TrackList/TrackList.jsx";
 import "./Playlist.css";
 
 export class Playlist extends React.Component {
-
     render () {
         return (
             <div className="Playlist">
@@ -14,3 +13,5 @@ export class Playlist extends React.Component {
         );
     }
 }
+
+export default Playlist;
