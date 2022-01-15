@@ -1,12 +1,8 @@
 import React from "react";
-import TrackList from "../TrackList/TrackList.jsx";
+import TrackList from "../TrackList/TrackList.js";
 import "./SearchResults.css"
 
 class SearchResults extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render () {
         return (
