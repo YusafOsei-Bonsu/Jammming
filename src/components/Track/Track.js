@@ -15,12 +15,12 @@ class Track extends React.Component {
     }
 
     render () {
-        const { name, artist } = this.props;
+        const { name, artist, album } = this.props;
         return (
             <div className="Track">
                     <div className="Track-information">
                         <h3>{name}</h3>
-                        <p>{artist}</p>
+                        <p>{artist} | {album}</p>
                     </div>
                     <button className="Track-action">
                         {/* <!-- + or - will go here --> */}
