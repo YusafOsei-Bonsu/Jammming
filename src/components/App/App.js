@@ -20,6 +20,17 @@ class App extends React.Component {
         { id: 2, name: "My Prerogative", artist: "Bobby Brown", album: "Don't be cruel" },
         { id: 3, name: "Oops! I did it again!", artist: "Britney Spears", album: "Stronger" }
       ]
+    };
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  // Adds a new song/track to the playlist
+  addTrack (newTrack) {
+    let isExisting = this.state.playlistTracks.find((savedTrack) => savedTrack.id === newTrack.id);
+    if (!(isExisting)) {
+      this.setState({ playlistTracks: [...this.state.playlistTracks, newTrack] });
+    } else {
+      return;
     }
   }
   
@@ -30,7 +41,7 @@ class App extends React.Component {
           <div className="App">
             <SearchBar />
             <div className="App-playlist">
-              <SearchResults searchResults={this.state.searchResults} />
+              <SearchResults onAdd={this.addTrack} searchResults={this.state.searchResults} />
               <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
             </div>
           </div>
