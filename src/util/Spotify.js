@@ -1,5 +1,10 @@
-let Spotify = {};
-function getAccessToken () {
-    
-}
-export default Spotify;
+let accessToken = "";
+export default {
+    getAccessToken: function () {
+        if (accessToken) {
+            return accessToken;
+        } else {
+            // 
+        }
+    }
+};
