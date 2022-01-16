@@ -21,11 +21,10 @@ class App extends React.Component {
         { id: 3, name: "Oops! I did it again!", artist: "Britney Spears", album: "Stronger" }
       ]
     };
-    this.addTrack = this.addTrack.bind(this);
   }
 
   // Adds a new song/track to the playlist
-  addTrack (newTrack) {
+  addTrack = (newTrack) => {
     let isExisting = this.state.playlistTracks.find((savedTrack) => savedTrack.id === newTrack.id);
     if (!(isExisting)) {
       this.setState({ playlistTracks: [...this.state.playlistTracks, newTrack] });

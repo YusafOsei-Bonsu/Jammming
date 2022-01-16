@@ -8,10 +8,9 @@ class Track extends React.Component {
         this.state = {
             isRemoval: false
         }
-        this.addTrack = this.addTrack.bind(this);
     }
 
-    addTrack () {
+    addTrack = () => {
         this.props.onAdd(this.props.track);
     }
 
