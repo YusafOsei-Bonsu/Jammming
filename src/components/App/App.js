@@ -49,6 +49,11 @@ class App extends React.Component {
     // Generate an array of uri values called 'trackURIs' from 'this.state.playlistTracks'
     let trackURIs = this.state.playlistTracks.map((track) => track.uri);
   }
+
+  // Retrieve tracks from Spotify API
+  search = (searchTerm) => {
+    console.log(searchTerm);
+  }
   
   render () {
     let { playlistName, playlistTracks, searchResults } = this.state;
@@ -56,7 +61,7 @@ class App extends React.Component {
         <div>
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
           <div className="App">
-            <SearchBar />
+            <SearchBar onSearch={this.search} />
             <div className="App-playlist">
               <SearchResults 
                 onAdd={this.addTrack} 
