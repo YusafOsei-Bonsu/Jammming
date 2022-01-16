@@ -44,6 +44,11 @@ class App extends React.Component {
   updatePlaylistName = (newName) => {
     this.setState({ playlistName: newName });
   }
+
+  savePlaylist = () => {
+    // Generate an array of uri values called 'trackURIs' from 'this.state.playlistTracks'
+    let trackURIs = this.state.playlistTracks.map((track) => track.uri);
+  }
   
   render () {
     let { playlistName, playlistTracks, searchResults } = this.state;
@@ -56,7 +61,8 @@ class App extends React.Component {
               <SearchResults 
                 onAdd={this.addTrack} 
                 searchResults={searchResults} />
-              <Playlist 
+              <Playlist
+                onSave={this.savePlaylist} 
                 playlistName={playlistName} 
                 playlistTracks={playlistTracks}
                 onNameChange={this.updatePlaylistName} 
