@@ -4,10 +4,11 @@ import "./Playlist.css";
 
 export class Playlist extends React.Component {
     render () {
+        let { playlistTracks, onRemove } = this.props;
         return (
             <div className="Playlist">
                 <input defaultValue={"New Playlist"}/>
-                <TrackList tracks={this.props.playlistTracks} />
+                <TrackList tracks={playlistTracks} onRemove={onRemove} isRemoval={true} />
                 <button className="Playlist-save">SAVE TO SPOTIFY</button>
             </div>
         );

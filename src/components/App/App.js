@@ -32,16 +32,24 @@ class App extends React.Component {
       return;
     }
   }
+
+  // Remove a song/track from a playlist based on its ID
+  removeTrack = (existingTrack) => {
+    this.setState({
+      playlistTracks: this.state.playlistTracks.filter((track) => track.id !== existingTrack.id)
+    });
+  }
   
   render () {
+    let { playlistName, playlistTracks, searchResults } = this.state;
     return (
         <div>
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
           <div className="App">
             <SearchBar />
             <div className="App-playlist">
-              <SearchResults onAdd={this.addTrack} searchResults={this.state.searchResults} />
-              <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
+              <SearchResults onAdd={this.addTrack} searchResults={searchResults} />
+              <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={this.removeTrack} />
             </div>
           </div>
         </div>
