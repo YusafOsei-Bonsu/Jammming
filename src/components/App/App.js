@@ -39,6 +39,11 @@ class App extends React.Component {
       playlistTracks: this.state.playlistTracks.filter((track) => track.id !== existingTrack.id)
     });
   }
+
+  // Update the playlist name
+  updatePlaylistName = (newName) => {
+    this.setState({ playlistName: newName });
+  }
   
   render () {
     let { playlistName, playlistTracks, searchResults } = this.state;
@@ -48,13 +53,20 @@ class App extends React.Component {
           <div className="App">
             <SearchBar />
             <div className="App-playlist">
-              <SearchResults onAdd={this.addTrack} searchResults={searchResults} />
-              <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={this.removeTrack} />
+              <SearchResults 
+                onAdd={this.addTrack} 
+                searchResults={searchResults} />
+              <Playlist 
+                playlistName={playlistName} 
+                playlistTracks={playlistTracks}
+                onNameChange={this.updatePlaylistName} 
+                onRemove={this.removeTrack} />
             </div>
           </div>
         </div>
     );
   }
+  
 }
 
 export default App;
