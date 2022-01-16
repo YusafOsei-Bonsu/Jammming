@@ -46,7 +46,8 @@ class App extends React.Component {
   }
 
   savePlaylist = () => {
-
+    // Generate an array of uri values called 'trackURIs' from 'this.state.playlistTracks'
+    let trackURIs = this.state.playlistTracks.map((track) => track.uri);
   }
   
   render () {
