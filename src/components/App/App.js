@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from "../SearchBar/SearchBar.js";
 import SearchResults from "../SearchResults/SearchResults.js";
 import Playlist from "../Playlist/Playlist.js";
+import Spotify from '../../util/Spotify.js';
 import './App.css';
 
 class App extends React.Component {
