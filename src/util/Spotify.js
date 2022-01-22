@@ -59,7 +59,7 @@ const Spotify = {
             // Create a new playlist
             playlistID = await axios.post(`${spotifyWebAPI}/users/${userID}/playlists`, { name: playlistName }, settings).then((res) => res.data.id);
             // Add tracks into a playlist
-            playlistID = await axios.post(`${spotifyWebAPI}/users/${userID}/playlists/${playlistID}/tracks`, { uris: trackURIs }, settings).then((res) => res.data.id);
+            await axios.post(`${spotifyWebAPI}/playlists/${playlistID}/tracks`, { uris: trackURIs }, settings).then((res) => res.data.id);
         } else {
             return;
         }
