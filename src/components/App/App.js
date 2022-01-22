@@ -53,7 +53,10 @@ class App extends React.Component {
 
   // Retrieve tracks from Spotify API
   search = (searchTerm) => {
-    console.log(searchTerm);
+    let tracks = Spotify.search(searchTerm);
+    this.setState({ 
+      searchResults: tracks 
+    });
   }
   
   render () {
