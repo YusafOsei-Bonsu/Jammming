@@ -26,21 +26,22 @@ const Spotify = {
         }
     },
     async search (term) {
-        const config = {
+        return await axios.get(`${spotifyWebAPI}/search?type=track&q=${term.replace(' ', '%20')}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
-        };
-        const response = await axios.get(`${spotifyWebAPI}/search?type=track&q=${term.replace(' ', '%20')}`, config);
-        console.log(response);
-        return await response.data.tracks.items.map((track) => {
-            return {
-                id: track.id,
-                name: track.name,
-                artist: track.artists[0].name,
-                album: track.album.name,
-                uri: track.uri
-            }
+        }).then(response => {
+            return response.data.tracks.items.map((track) => {
+                return {
+                    id: track.id,
+                    name: track.name,
+                    artist: track.artists[0].name,
+                    album: track.album.name,
+                    uri: track.uri
+                }
+            });
+        }).catch(error => {
+            console.log(error);
         });
     }
 };
