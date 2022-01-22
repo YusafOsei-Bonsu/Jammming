@@ -43,6 +43,26 @@ const Spotify = {
         }).catch(error => {
             console.log(error);
         });
+    },
+    async savePlaylist (playlistName, trackURIs) {
+        if (playlistName && trackURIs.length > 0) {
+            const accessToken = this.getAccessToken();
+            const settings = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            };
+            let userID = undefined;
+            let playlistID = undefined;
+            // Get user ID
+            userID = await axios.get(`${spotifyWebAPI}/me`, settings).then((response) => response.data.id);
+            // Create a new playlist
+            playlistID = await axios.post(`${spotifyWebAPI}/users/${userID}/playlists`, { name: playlistName }, settings).then((res) => res.data.id);
+            // Add tracks into a playlist
+            playlistID = await axios.post(`${spotifyWebAPI}/users/${userID}/playlists/${playlistID}/tracks`, { uris: trackURIs }, settings).then((res) => res.data.id);
+        } else {
+            return;
+        }
     }
 };
 
