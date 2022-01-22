@@ -4,7 +4,7 @@ const redirectURI = "http://localhost:3000/";
 const spotifyURL = `https://accounts.spotify.com/authorize?client_id=${encodeURIComponent(clientID)}&response_type=token&scope=playlist-modify-public&redirect_uri=${encodeURIComponent(redirectURI)}`;
 const spotifyWebAPI = "https://api.spotify.com/v1";
 let accessToken = undefined;
-let expiryIn = undefined;
+let expiresIn = undefined;
 
 const Spotify = {
     getAccessToken () {
@@ -16,7 +16,7 @@ const Spotify = {
             // Checking the existence of the access token and expiry time inside the url
             if (urlAccessToken && urlExpiryIn) {
                 accessToken = urlAccessToken[1];
-                expiryIn = Number(urlExpiryIn[1]);
+                expiresIn = urlExpiryIn[1];
                 // Clear the parameters from the URL, so the app doesn’t try grabbing the access token after it has expired
                 window.setTimeout(() => accessToken = '', expiresIn * 1000);
                 window.history.pushState('Access Token', null, '/');
