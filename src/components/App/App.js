@@ -11,16 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       playlistName: "My Playlist",
-      playlistTracks: [
-        { id: 4, name: "Candy Shop", artist: "50 Cent", album: "Get rich or die tryin'" },
-        { id: 5, name: "Without me", artist: "Eminem", album: "White boy" },
-        { id: 6, name: "Gold digger", artist: "Kanye West", album: "West" }
-      ],
-      searchResults: [
-        { id: 1, name: "Wanna be startin' somethin", artist: "Michael Jackson", album: "Thriller" },
-        { id: 2, name: "My Prerogative", artist: "Bobby Brown", album: "Don't be cruel" },
-        { id: 3, name: "Oops! I did it again!", artist: "Britney Spears", album: "Stronger" }
-      ]
+      playlistTracks: [],
+      searchResults: []
     };
   }
 
@@ -47,8 +39,12 @@ class App extends React.Component {
   }
 
   savePlaylist = () => {
-    // Generate an array of uri values called 'trackURIs' from 'this.state.playlistTracks'
-    let trackURIs = this.state.playlistTracks.map((track) => track.uri);
+    const { playlistName, playlistTracks } = this.state;
+    const trackURIs = playlistTracks.map((track) => track.id);
+    Spotify.savePlaylist(playlistName, trackURIs);
+    // Reset playlist name & tracks after saving playlist
+    this.updatePlaylistName("New Playlist");
+    this.setState({ playlistTracks: [] });
   }
 
   // Retrieve tracks from Spotify API
